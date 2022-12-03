@@ -8,14 +8,14 @@ IN: 2022.03
 : input ( -- seq )
     "input" read-input ;
 
-: letter>priority ( letter -- num )
-    first [ LETTER? 26 0 ? ] [ ch>lower 96 - ] bi + ;
+: priority ( char -- num )
+    [ LETTER? 26 0 ? ] [ ch>lower 96 - ] bi + ;
 
 : part-1 ( seq -- n )
-    [ halves intersect letter>priority ] map-sum ;
+    [ halves intersect first priority ] map-sum ;
 
 : part-2 ( seq -- n )
-    3 group [ intersect-all letter>priority ] map-sum ;
+    3 group [ intersect-all first priority ] map-sum ;
 
 input part-1 .
 input part-2 .
