@@ -23,10 +23,10 @@ CONSTANT: moves { { "A" 0 } { "B" 1 } { "C" 2 } { "X" 0 } { "Y" 1 } { "Z" 2 } }
     { { 3 4 8 } { 1 5 9 } { 2 6 7 } } score ;
 
 : game-1 ( turns -- n )
-    [ score-1 ] map sum ;
+    [ score-1 ] map-sum ;
 
 : game-2 ( turns -- n )
-    [ score-2 ] map sum ;
+    [ score-2 ] map-sum ;
 
 input game-1 .
 input game-2 .
