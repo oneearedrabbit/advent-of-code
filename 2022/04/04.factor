@@ -7,8 +7,8 @@ IN: 2022.04
 
 : parse-input ( seq -- seq )
     [ "," split ] map
-    [ "-" split [ dec> ]
-      map first2 [a..b] ]
+    [ "-" split [ dec> ] map
+      first2 [a..b] ]
     matrix-map ;
 
 : aoc-input ( -- seq )
