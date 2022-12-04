@@ -5,10 +5,10 @@ IN: 2022.01
 : read-input ( path -- seq )
     utf8 file-lines ;
 
-: parse-input ( seq -- matrix' )
+: parse-input ( seq -- matrix )
     { "" } split [ dec> ] matrix-map ;
 
-: input ( -- matrix' )
+: input ( -- matrix )
     "input" read-input parse-input ;
 
 : part-1 ( matrix' -- n )
