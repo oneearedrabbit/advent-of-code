@@ -1,11 +1,12 @@
-USING: io.encodings.utf8 io.files kernel math.matrices math.parser
-prettyprint ranges sequences sets sets.extras splitting ;
+USING: io.encodings.utf8 io.files kernel math.matrices
+math.parser prettyprint ranges sequences sets sets.extras
+splitting ;
 IN: 2022.04
 
-: read-input ( path -- seq )
+: read-input ( path -- seq' )
     utf8 file-lines ;
 
-: parse-input ( seq -- seq )
+: parse-input ( seq -- seq' )
     [ "," split ] map
     [ "-" split [ dec> ] map
       first2 [a..b] ]
