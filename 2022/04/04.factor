@@ -5,23 +5,20 @@ IN: 2022.04
 : read-input ( path -- seq )
     utf8 file-lines ;
 
+: <array2 ( array -- x y )
+    dup first swap second ;
+
 : parse-input ( seq -- ranges )
     [ "," split ] map [ "-" split [ dec> ] map ] matrix-map ;
 
 : aoc-input ( -- ranges )
     "input" read-input parse-input ;
 
-: <array2 ( array -- x y )
-    dup first swap second ;
-
 : input-to-intervals ( ranges -- intervals )
     [ <array2 [a,b] ] matrix-map ;
 
 : intervals-superset? ( pair -- ? )
     dup <array2 interval-subset? swap <array2 swap interval-subset? or ;
-
-: calc-total ( list -- n )
-    [ t = ] count ;
 
 : part-1 ( -- fn )
     [ intervals-superset? ] ; inline
@@ -30,7 +27,7 @@ IN: 2022.04
     [ <array2 intervals-intersect? ] ; inline
 
 : solution ( ranges fn -- n )
-    swap input-to-intervals swap map calc-total ; inline
+    swap input-to-intervals swap count ; inline
 
 aoc-input part-1 solution .
 aoc-input part-2 solution .
