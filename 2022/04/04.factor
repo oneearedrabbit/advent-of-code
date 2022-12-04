@@ -5,13 +5,13 @@ IN: 2022.04
 : read-input ( path -- seq )
     utf8 file-lines ;
 
-: parse-input ( seq -- ranges )
+: parse-input ( seq -- seq )
     [ "," split ] map
     [ "-" split [ dec> ]
       map first2 [a..b] ]
     matrix-map ;
 
-: aoc-input ( -- ranges )
+: aoc-input ( -- seq )
     "input" read-input parse-input ;
 
 : part-1 ( seq -- n )
