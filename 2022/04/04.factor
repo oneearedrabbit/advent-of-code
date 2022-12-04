@@ -8,7 +8,7 @@ IN: 2022.04
 : parse-input ( seq -- ranges )
     [ "," split ] map [ "-" split [ dec> ] map ] matrix-map ;
 
-: input ( -- ranges )
+: aoc-input ( -- ranges )
     "input" read-input parse-input ;
 
 : <array2 ( array -- x y )
@@ -23,11 +23,14 @@ IN: 2022.04
 : calc-total ( list -- n )
     [ t = ] count ;
 
-: part-1 ( ranges -- n )
-    input-to-intervals [ intervals-superset? ] map calc-total ;
+: part-1 ( -- fn )
+    [ intervals-superset? ] ; inline
 
-: part-2 ( ranges -- n )
-    input-to-intervals [ <array2 intervals-intersect? ] map calc-total ;
+: part-2 ( -- fn )
+    [ <array2 intervals-intersect? ] ; inline
 
-input part-1 .
-input part-2 .
+: solution ( ranges fn -- n )
+    swap input-to-intervals swap map calc-total ; inline
+
+aoc-input part-1 solution .
+aoc-input part-2 solution .
