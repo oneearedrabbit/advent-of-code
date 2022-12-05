@@ -10,19 +10,20 @@ CONSTANT: moves { { "A" 0 } { "B" 1 } { "C" 2 } { "X" 0 } { "Y" 1 } { "Z" 2 } }
 : parse-input ( seq -- turns )
     [ " " split ] map ;
 
-: input ( -- turns )
+: aoc-input ( -- turns )
     "input" read-input parse-input ;
 
 : score ( turn dict -- n )
     swap [ moves at ] map swap matrix-nth ;
 
-! TODO: I think this could be improved by using curry
+: game ( moves turns -- n )
+    [ score ] curry map-sum ;
 
-: game-1 ( turns -- n )
-    [ { { 4 8 3 } { 1 5 9 } { 7 2 6 } } score ] map-sum ;
+: part-1 ( turns -- n )
+    { { 4 8 3 } { 1 5 9 } { 7 2 6 } } game ;
 
-: game-2 ( turns -- n )
-    [ { { 3 4 8 } { 1 5 9 } { 2 6 7 } } score ] map-sum ;
+: part-2 ( turns -- n )
+    { { 3 4 8 } { 1 5 9 } { 2 6 7 } } game ;
 
-input game-1 .  ! => 12535
-input game-2 .  ! => 15457
+aoc-input part-1 .  ! => 12535
+aoc-input part-2 .  ! => 15457
