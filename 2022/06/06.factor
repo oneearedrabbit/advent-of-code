@@ -9,7 +9,7 @@ IN: 2022.06
     "input" read-input ;
 
 : solution ( n seq -- n )
-    [ <clumps> [ all-unique? ] find drop ] [ + ] bi ;
+    [ clump [ all-unique? ] find drop ] [ + ] bi ;
 
 : part-1 ( seq -- n )
     4 solution ;
