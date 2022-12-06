@@ -10,8 +10,13 @@ end
 
 data, commands = *read
 commands.each do |num, from, to|
-  data[to] = data[to] + data[from].last(num).reverse
-  data[from] = data[from][..-num-1]
+  # This is less efficient than a commented out code, but it
+  # implements the same logic as a factor program:
+  # data[to] = data[to] + data[from].last(num).reverse
+  # data[from] = data[from][..-num-1]  
+  num.times do
+    data[to].push(data[from].pop)
+  end
 end
 
 puts data.map(&:last).join  # => JCMHLVGMG
