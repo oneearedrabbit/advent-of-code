@@ -12,7 +12,7 @@ IN: 2022.06
     "input" read-input parse-input ;
 
 : solution ( n seq -- n )
-    dup -rot <clumps> [ all-unique? ] find drop + ;
+    [ <clumps> [ all-unique? ] find drop ] [ + ] bi ;
 
 : part-1 ( seq -- n )
     4 solution ;
