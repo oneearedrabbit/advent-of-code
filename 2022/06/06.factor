@@ -3,13 +3,10 @@ prettyprint sequences sets sorting splitting ;
 IN: 2022.06
 
 : read-input ( path -- seq )
-    utf8 file-lines ;
-
-: parse-input ( seq -- seq )
-    first ;
+    utf8 file-contents ;
 
 : aoc-input ( -- seq )
-    "input" read-input parse-input ;
+    "input" read-input ;
 
 : solution ( n seq -- n )
     [ <clumps> [ all-unique? ] find drop ] [ + ] bi ;
