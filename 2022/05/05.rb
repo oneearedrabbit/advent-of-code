@@ -2,7 +2,7 @@ def read
   data, commands = File.read('input').split("\n\n")
   data = data.split("\n")[0..-2].
            map { |el| el.scan(/..../) }.transpose.
-           map { |el| el.map { |el| el.strip && el.scan(/\w/) }.delete_if(&:empty?).flatten.reverse }
+           map { |el| el.map { |el| el.scan(/\w/) }.delete_if(&:empty?).flatten.reverse }
   commands = commands.split("\n").map { |el| el.split.map(&:to_i).select { |el| el > 0 } }.
                map { |n, m, k| [n, m-1, k-1] }
   [data, commands]
