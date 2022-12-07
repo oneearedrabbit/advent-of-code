@@ -21,6 +21,9 @@ IN: 2022.05
 : aoc-input ( -- data commands )
     "input" read-input parse-input ;
 
+: append-nth ( matrix i elt -- matrix' )
+    '[ _ append ] overd change-nth ;
+
 : part-1 ( commands data -- str )
     [
         unclip swap '[
@@ -28,5 +31,14 @@ IN: 2022.05
         ] times
     ] each [ last ] map "" join ;
 
+: part-2 ( commands data -- str )
+    [
+        first3 spin [ pick 2dup nth ] dip cut*
+        ! stack: M t f M b a
+        [ -rot set-nth ] [ append-nth ] bi*  ! -rot is deprecated, wha?!
+    ] each [ last ] map "" join ;
+
 aoc-input part-1 .
-! part 2 is missing; all my attempts turned out to be ugly, and I gave up
+
+! FWIW, I solved part-2 using Ruby first, stack shuffling is hard
+aoc-input part-2 .
