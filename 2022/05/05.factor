@@ -15,7 +15,7 @@ IN: 2022.05
     ! Commands section. Shape: { { <blocks:number> <from:number> <to:number> } ... }
     [ [ " " split ] map
       [ dec> ] matrix-map
-      [ sift >vector ] map ]
+      [ sift >vector V{ 0 1 1 } v- ] map ]
     bi* ;
 
 : aoc-input ( -- data commands )
@@ -23,7 +23,7 @@ IN: 2022.05
 
 : part-1 ( commands data -- str )
     [
-        unclip swap 1 v-n '[
+        unclip swap '[
             _ over nths first2 [ pop ] dip push
         ] times
     ] each [ last ] map "" join ;
