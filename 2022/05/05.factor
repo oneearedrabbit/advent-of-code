@@ -21,6 +21,9 @@ IN: 2022.05
 : aoc-input ( -- data commands )
     "input" read-input parse-input ;
 
+: take-last ( matrix -- str )
+    [ last ] map "" join ;
+
 : append-nth ( matrix i elt -- matrix' )
     '[ _ append ] overd change-nth ;
 
@@ -29,14 +32,14 @@ IN: 2022.05
         unclip swap '[
             _ over nths first2 [ pop ] dip push
         ] times
-    ] each [ last ] map "" join ;
+    ] each take-last ;
 
 : part-2 ( commands data -- str )
     [
         first3 spin [ pick 2dup nth ] dip cut*
         ! stack: M t f M b a
         [ -rot set-nth ] [ append-nth ] bi*  ! -rot is deprecated, wha?!
-    ] each [ last ] map "" join ;
+    ] each take-last ;
 
 aoc-input part-1 .
 
