@@ -2,8 +2,6 @@ USING: assocs io io.encodings.utf8 io.files kernel math.matrices
 math.parser prettyprint sequences sorting splitting locals.types ;
 IN: 2022.02
 
-CONSTANT: moves { { "A" 0 } { "B" 1 } { "C" 2 } { "X" 0 } { "Y" 1 } { "Z" 2 } }
-
 : read-input ( path -- seq )
     utf8 file-lines ;
 
@@ -14,7 +12,7 @@ CONSTANT: moves { { "A" 0 } { "B" 1 } { "C" 2 } { "X" 0 } { "Y" 1 } { "Z" 2 } }
     "input" read-input parse-input ;
 
 : score ( turn dict -- n )
-    swap [ moves at ] map swap matrix-nth ;
+    swap [ { { "A" 0 } { "B" 1 } { "C" 2 } { "X" 0 } { "Y" 1 } { "Z" 2 } } at ] map swap matrix-nth ;
 
 : game ( moves turns -- n )
     [ score ] curry map-sum ;
