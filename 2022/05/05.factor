@@ -8,14 +8,14 @@ IN: 2022.05
 
 : parse-input ( seq -- data commands )
     { "" } split first2
-    ! Data section. Some functions to consider: sift? Shape: { { "G" "T" "R" "W" } ... }
+    ! Data section. Some functions to consider: sift? Shape: { V{ "G" "T" "R" "W" } ... }
     [ [ 4 group ] map
       but-last flip [ [ LETTER? not ] "" collapse ] matrix-map
       [ [ empty? ] trim reverse >vector ] map ]
-    ! Commands section. Shape: { { <blocks:number> <from:number> <to:number> } ... }
+    ! Commands section. Shape: { V{ <blocks-to-move:number> <from:number> <to:number> } ... }
     [ [ " " split ] map
       [ dec> ] matrix-map
-      [ sift >vector V{ 0 1 1 } v- ] map ]
+      [ sift >vector V{ 0 1 1 } v- ] map ]  ! doesn't have to be a vector, but v- is very nice
     bi* ;
 
 : aoc-input ( -- data commands )
