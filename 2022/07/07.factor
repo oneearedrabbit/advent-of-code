@@ -31,9 +31,8 @@ EBNF: bash [=[
             { "ls" [ drop ] }
             { "dir" [ drop ] }
             { "file" [
-                  ! not optimal, too much stack shuffling
-                  3dup first pick [ rot "/" join swap at+ ] 2curry swap head-clump swap each
-                  drop drop
+                  first 2over head-clump rot
+                  [ [ "/" join ] dip spin dup [ at+ ] dip ] curry each drop 
               ] }
         } case
     ] each drop ;
