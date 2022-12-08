@@ -31,8 +31,8 @@ EBNF: bash [=[
             { "ls" [ drop ] }
             { "dir" [ drop ] }
             { "file" [
-                  first 2over head-clump rot
-                  [ [ "/" join ] dip spin dup [ at+ ] dip ] curry each drop 
+                  first 2over head-clump 
+                  [ pick [ "/" join swap at+ ] dip ] with each drop
               ] }
         } case
     ] each drop ;
