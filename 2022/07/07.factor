@@ -31,12 +31,12 @@ EBNF: bash [=[
             { "ls" [ drop ] }
             { "dir" [ drop ] }
             { "file" [
-                  ! one word longer, but could be more efficient?
-                  ! first 2over head-clump swap 
-                  ! [ [ "/" join ] dip at+ ] curry with each
+                  first 2over head-clump swap 
+                  [ [ "/" join ] dip at+ ] curry with each
 
-                  first 2over head-clump  
-                  [ swap [ "/" join ] dip at+ ] 2with each
+                  ! one word shorter, but uses swap in the quot
+                  ! first 2over head-clump  
+                  ! [ swap [ "/" join ] dip at+ ] 2with each
               ] }
         } case
     ] each drop ;
