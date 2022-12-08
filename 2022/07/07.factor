@@ -25,7 +25,7 @@ EBNF: bash [=[
 
 : tree ( seq -- tree )
     [ V{ } clone V{ } clone ] dip [
-        unclip-last {
+        unclip-last-slice {
             ! stack: sizes, current-folder, args
             { "cd" [ first dup ".." = [ drop dup pop* ] [ over push ] if ] }
             { "ls" [ drop ] }
