@@ -14,8 +14,8 @@ IN: 2022.01
 : part-1 ( matrix' -- n )
     [ sum ] map supremum ;
 
-: part-2 ( matrix' -- n )
-    [ sum ] map natural-sort 3 tail* sum ;
+: part-2 ( matrix -- n )
+    [ sum ] map { 0 1 2 } kth-largests sum ;
 
 input part-1 .
 input part-2 .
